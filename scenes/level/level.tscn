@@ -394,6 +394,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.401
 transform = Transform3D(-0.628174, 0.721498, 0.27361, 0.713497, 0.677456, -0.148323, -0.293843, 0.10256, -0.945073, -7.68303, 19.2715, 19.9403)
 
 [node name="Player" parent="." instance=ExtResource("12_asb7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174898, 23.5157, 24.567)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495072, 48.4712, 73.9712)
 
 [editable path="Scenery/Stone02Prefab4"]
