@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b12bnm2sn7fpo"]
+
+[ext_resource type="Script" path="res://addons/Basic FPS Player/Src/basic_player_startup.gd" id="1_k641b"]
+[ext_resource type="PackedScene" uid="uid://kmyakts4l64t" path="res://addons/Basic FPS Player/Src/basic_player_head.tscn" id="2_vb21n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bexsb"]
+radius = 1.0
+height = 4.0
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 14
+script = ExtResource("1_k641b")
+SPEED = 10.0
+IN_AIR_SPEED = 7.0
+IN_AIR_ACCEL = 8.0
+JUMP_VELOCITY = 6.0
+HEAD_BOB_AMPLITUDE = 0.05
+KEY_BIND_UP = "move_forward"
+KEY_BIND_LEFT = "move_left"
+KEY_BIND_RIGHT = "move_right"
+KEY_BIND_DOWN = "move_backward"
+
+[node name="Head" parent="." instance=ExtResource("2_vb21n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99011, 0)
+shape = SubResource("CapsuleShape3D_bexsb")

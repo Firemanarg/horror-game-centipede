@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcubccpdvw3po"]
+
+[ext_resource type="ArrayMesh" uid="uid://by0hsg80wh84p" path="res://assets/meshes/rocks/Sketchfab_Scene_Stone_12_Material #2_0.res" id="1_amchs"]
+[ext_resource type="Texture2D" uid="uid://dh5q377ftxx3g" path="res://resources/images/textures/ground_6_textures/T_Ground6_Color.png" id="2_11620"]
+[ext_resource type="Texture2D" uid="uid://xki25aof3ioj" path="res://resources/images/textures/ground_6_textures/T_Ground6_Normal.png" id="3_mao5c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrohe"]
+albedo_texture = ExtResource("2_11620")
+normal_enabled = true
+normal_texture = ExtResource("3_mao5c")
+uv1_scale = Vector3(16, 16, 16)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.07053
+
+[node name="Stone02Prefab" type="Node3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.580733, 0.181141, 0.822803)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+mesh = ExtResource("1_amchs")
+material = SubResource("StandardMaterial3D_hrohe")

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ibaob42s5382"]
+
+[ext_resource type="Texture2D" uid="uid://blxnjhgra1t46" path="res://assets/meshes/mushroom/textures/lambert1_baseColor.png" id="1_m6sdx"]
+
+[resource]
+resource_name = "lambert1"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_m6sdx")

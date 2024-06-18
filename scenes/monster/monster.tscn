@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwxl6bm0g8tqi"]
+
+[ext_resource type="Script" path="res://scenes/monster/monster.gd" id="1_5byu6"]
+[ext_resource type="PackedScene" uid="uid://ce76bmyns05xe" path="res://scenes/creature/creature_head.tscn" id="1_85k45"]
+[ext_resource type="PackedScene" uid="uid://cgj285rylb4vv" path="res://scenes/creature/creature_torso_part.tscn" id="1_unnmt"]
+
+[node name="Monster" type="Node3D"]
+script = ExtResource("1_5byu6")
+
+[node name="CreatureHead" parent="." instance=ExtResource("1_85k45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4)
+max_speed = 8.0
+
+[node name="CreatureTorsoPart" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.371935)
+next_part = NodePath("../CreatureHead")
+movement_speed = 12
+
+[node name="CreatureTorsoPart2" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -2.02807)
+next_part = NodePath("../CreatureTorsoPart")
+movement_speed = 12
+
+[node name="CreatureTorsoPart3" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -4.62807)
+next_part = NodePath("../CreatureTorsoPart2")
+movement_speed = 12
+
+[node name="CreatureTorsoPart4" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, -8.04942)
+next_part = NodePath("../CreatureTorsoPart3")
+movement_speed = 12
+
+[node name="CreatureTorsoPart5" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, -8.04942)
+next_part = NodePath("../CreatureTorsoPart4")
+movement_speed = 12
+
+[node name="CreatureTorsoPart6" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, -12.0494)
+next_part = NodePath("../CreatureTorsoPart5")
+movement_speed = 12
+
+[node name="CreatureTorsoPart7" parent="." node_paths=PackedStringArray("next_part") instance=ExtResource("1_unnmt")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -15.0494)
+next_part = NodePath("../CreatureTorsoPart6")
+movement_speed = 12

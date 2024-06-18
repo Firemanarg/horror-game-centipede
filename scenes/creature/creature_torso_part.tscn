@@ -1,0 +1,183 @@
+[gd_scene load_steps=14 format=3 uid="uid://cgj285rylb4vv"]
+
+[ext_resource type="Script" path="res://scenes/creature/creature_torso_part.gd" id="1_il2pn"]
+[ext_resource type="PackedScene" uid="uid://v4yst4tc2v1r" path="res://assets/creature/torso_part.glb" id="1_xdwtu"]
+[ext_resource type="Texture2D" uid="uid://xki25aof3ioj" path="res://resources/images/textures/ground_6_textures/T_Ground6_Normal.png" id="3_8ghdx"]
+[ext_resource type="Script" path="res://scenes/creature/ik_starter.gd" id="3_itkns"]
+[ext_resource type="Texture2D" uid="uid://635f4nvsgqdn" path="res://resources/images/textures/camouflage_14_textures/T_Camouflage14_Normal.png" id="4_3lefq"]
+[ext_resource type="Script" path="res://scenes/creature/step_ray.gd" id="4_aawe4"]
+[ext_resource type="Script" path="res://scenes/creature/ik_target.gd" id="4_ca08k"]
+[ext_resource type="Texture2D" uid="uid://b1bd0ha2861co" path="res://resources/images/textures/ground_5_textures/T_Ground5_Normal.png" id="5_k1wus"]
+[ext_resource type="Texture2D" uid="uid://d3bqti72fjwj7" path="res://resources/images/textures/ground_7_textures/T_Ground7_Normal.png" id="6_wxh2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwepy"]
+resource_name = "CarapaceMaterial"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.130675, 0.130675, 0.130675, 1)
+metallic = 0.2
+metallic_specular = 0.3
+roughness = 0.6
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("3_8ghdx")
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1cpo"]
+resource_name = "InternalTorsoMaterial"
+cull_mode = 2
+albedo_color = Color(0.141979, 0.090156, 0, 1)
+metallic_specular = 0.4
+roughness = 0.5
+normal_enabled = true
+normal_scale = 2.2
+normal_texture = ExtResource("4_3lefq")
+uv1_scale = Vector3(0.8, 0.8, 0.8)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kw6v4"]
+resource_name = "FootMaterial"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.8
+roughness = 0.4
+normal_enabled = true
+normal_scale = 6.0
+normal_texture = ExtResource("6_wxh2v")
+uv1_scale = Vector3(2.27, 2.27, 2.27)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 8.87655
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45xfh"]
+resource_name = "Leg_0_Material"
+cull_mode = 2
+albedo_color = Color(0.159042, 0.0801182, 0, 1)
+metallic_specular = 0.3
+roughness = 0.7
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("5_k1wus")
+uv1_scale = Vector3(7, 7, 7)
+
+[node name="CreatureTorsoPart" instance=ExtResource("1_xdwtu")]
+script = ExtResource("1_il2pn")
+movement_offset = 30.0
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
+bones/3/rotation = Quaternion(-0.00847336, -0.00847336, 7.18029e-05, 0.999928)
+bones/4/rotation = Quaternion(0.0417062, -0.0265603, -0.00181679, 0.998775)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(-0.0954373, 0.00085835, 0.00662043, 0.995413)
+bones/6/rotation = Quaternion(0.0416428, 5.41016e-05, -0.00285039, 0.999129)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
+bones/9/rotation = Quaternion(-0.00847336, 0.00847336, -7.18029e-05, 0.999928)
+bones/10/rotation = Quaternion(0.0417062, 0.0265603, 0.00181679, 0.998775)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0954373, -0.00085835, -0.00662043, 0.995413)
+bones/12/rotation = Quaternion(0.0416428, -5.40904e-05, 0.00285039, 0.999129)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="Carapace" parent="Armature/Skeleton3D" index="0"]
+gi_mode = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_hwepy")
+
+[node name="InternalTorso" parent="Armature/Skeleton3D" index="1"]
+gi_mode = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_i1cpo")
+
+[node name="LeftFoot" parent="Armature/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kw6v4")
+
+[node name="LeftLeg_0" parent="Armature/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_45xfh")
+
+[node name="LeftLeg_1" parent="Armature/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hwepy")
+
+[node name="RightFoot" parent="Armature/Skeleton3D" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kw6v4")
+
+[node name="RightLeg_0" parent="Armature/Skeleton3D" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_45xfh")
+
+[node name="RightLeg_1" parent="Armature/Skeleton3D" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hwepy")
+
+[node name="LeftLegIK" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="8"]
+process_priority = 1
+root_bone = &"LeftLeg_0"
+tip_bone = &"LeftLegIKTip"
+use_magnet = true
+magnet = Vector3(50, 50, 0)
+target_node = NodePath("../../../LeftFootIKTarget")
+script = ExtResource("3_itkns")
+
+[node name="RightLegIK" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="9"]
+process_priority = 1
+root_bone = &"RightLeg_0"
+tip_bone = &"RightLegIKTip"
+use_magnet = true
+magnet = Vector3(-50, 50, 0)
+target_node = NodePath("../../../RightFootIKTarget")
+script = ExtResource("3_itkns")
+
+[node name="LeftFootAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
+transform = Transform3D(0.00852457, 0.99219, 0.124441, 0.0678091, -0.124732, 0.989871, 0.997662, -6.51926e-09, -0.0683428, 6.95, 0.15, -6.90683e-09)
+bone_name = "LeftLeg_3"
+bone_idx = 5
+
+[node name="LeftFootAudioPlayer" type="AudioStreamPlayer3D" parent="Armature/Skeleton3D/LeftFootAttachment" index="0"]
+transform = Transform3D(-0.999855, 0.016916, 0.00212163, -0.016916, -0.968884, -0.246938, -0.0021216, -0.246938, 0.969029, 0.118492, -13.7914, -1.72973)
+visible = false
+
+[node name="RightFootAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="11"]
+transform = Transform3D(0.00852457, -0.99219, -0.124441, -0.0678091, -0.124732, 0.989871, -0.997662, -6.51926e-09, -0.0683428, -6.95, 0.15, -6.90683e-09)
+bone_name = "RightLeg_3"
+bone_idx = 11
+
+[node name="RightFootAudioPlayer" type="AudioStreamPlayer3D" parent="Armature/Skeleton3D/RightFootAttachment" index="0"]
+transform = Transform3D(-0.999855, 0.016916, 0.00212163, -0.016916, -0.968884, -0.246938, -0.0021216, -0.246938, 0.969029, 0.118492, -13.7914, -1.72973)
+visible = false
+
+[node name="LeftFootIKTarget" parent="." index="1" node_paths=PackedStringArray("parallel_target", "step_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, -3, 0)
+top_level = true
+script = ExtResource("4_ca08k")
+parallel_target = NodePath("../RightFootIKTarget")
+step_target = NodePath("../StepTargetContainer/LeftStepRay/LeftStepTarget")
+step_distance = 30.0
+
+[node name="RightFootIKTarget" parent="." index="2" node_paths=PackedStringArray("parallel_target", "step_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, -3, 0)
+top_level = true
+script = ExtResource("4_ca08k")
+parallel_target = NodePath("../LeftFootIKTarget")
+step_target = NodePath("../StepTargetContainer/RightStepRay/RightStepTarget")
+step_distance = 30.0
+
+[node name="StepTargetContainer" type="Node3D" parent="." index="3"]
+
+[node name="LeftStepRay" type="RayCast3D" parent="StepTargetContainer" index="0" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 3, 0)
+target_position = Vector3(0, -30, 0)
+collision_mask = 8
+script = ExtResource("4_aawe4")
+step_target = NodePath("LeftStepTarget")
+
+[node name="LeftStepTarget" type="Marker3D" parent="StepTargetContainer/LeftStepRay" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+top_level = true
+
+[node name="RightStepRay" type="RayCast3D" parent="StepTargetContainer" index="1" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 3, 0)
+target_position = Vector3(0, -30, 0)
+collision_mask = 8
+script = ExtResource("4_aawe4")
+step_target = NodePath("RightStepTarget")
+
+[node name="RightStepTarget" type="Marker3D" parent="StepTargetContainer/RightStepRay" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+top_level = true

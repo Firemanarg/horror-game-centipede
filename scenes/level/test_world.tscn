@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvuvbok6xb3os"]
+
+[ext_resource type="Texture2D" uid="uid://dh5q377ftxx3g" path="res://resources/images/textures/ground_6_textures/T_Ground6_Color.png" id="1_hq5yo"]
+[ext_resource type="Shader" path="res://resources/shaders/blending_texture.gdshader" id="1_wdxwh"]
+[ext_resource type="PackedScene" uid="uid://bwxl6bm0g8tqi" path="res://scenes/monster/monster.tscn" id="2_sbsyy"]
+[ext_resource type="Texture2D" uid="uid://xki25aof3ioj" path="res://resources/images/textures/ground_6_textures/T_Ground6_Normal.png" id="3_vpvg4"]
+[ext_resource type="Texture2D" uid="uid://curso0f3wl7p" path="res://resources/images/textures/ground_6_textures/T_Ground6_AO.png" id="4_na4fj"]
+[ext_resource type="PackedScene" uid="uid://b12bnm2sn7fpo" path="res://scenes/player/player.tscn" id="6_32pxx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yf4uc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_v6ca7"]
+sky_material = SubResource("ProceduralSkyMaterial_yf4uc")
+
+[sub_resource type="Environment" id="Environment_ia4ui"]
+background_mode = 2
+sky = SubResource("Sky_v6ca7")
+tonemap_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5c8td"]
+render_priority = 0
+shader = ExtResource("1_wdxwh")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.035, -0.015, 0.02)
+shader_parameter/albedo_tex = ExtResource("1_hq5yo")
+shader_parameter/orm_tex = ExtResource("4_na4fj")
+shader_parameter/normal_map = ExtResource("3_vpvg4")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q8rqr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0wqqv"]
+sky_material = SubResource("ProceduralSkyMaterial_q8rqr")
+
+[sub_resource type="Environment" id="Environment_k3xfm"]
+background_mode = 2
+sky = SubResource("Sky_0wqqv")
+ambient_light_source = 2
+ambient_light_color = Color(0.176471, 0.176471, 0.176471, 1)
+tonemap_mode = 2
+volumetric_fog_enabled = true
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ia4ui")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 33, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 33.0
+height = 276.034
+sides = 16
+material = SubResource("ShaderMaterial_5c8td")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(-4.2222e-08, -0.965926, 0.258819, 1, -3.2398e-08, 4.2222e-08, -3.2398e-08, 0.258819, 0.965926, 79.511, 4.21159e-07, -18.1563)
+use_collision = true
+flip_faces = true
+radius = 30.0
+height = 154.0
+sides = 16
+material = SubResource("ShaderMaterial_5c8td")
+
+[node name="Monster2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_sbsyy")]
+target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("6_32pxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 56)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k3xfm")

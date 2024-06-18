@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6bo7fs4uxaia"]
+
+[ext_resource type="Script" path="res://prefabs/level/cobwebs/cobweb_01_prefab.gd" id="1_5dy7m"]
+[ext_resource type="ArrayMesh" uid="uid://d1x7seebc43g6" path="res://assets/meshes/cobwebs/Sketchfab_Scene_Object_1.res" id="1_pwjxo"]
+[ext_resource type="Texture2D" uid="uid://mx8kch626kpr" path="res://assets/meshes/cobwebs/textures/lambert5SG_baseColor.png" id="3_5xpn0"]
+[ext_resource type="AudioStream" uid="uid://cfhgn38t3h2xk" path="res://assets/audio/sounds/string_break.wav" id="3_uogao"]
+
+[sub_resource type="Gradient" id="Gradient_4u7w6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.243655, 0.680203, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.330624, 0.330624, 0.330624, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ixcfw"]
+frequency = 0.137
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_abvgu"]
+color_ramp = SubResource("Gradient_4u7w6")
+noise = SubResource("FastNoiseLite_ixcfw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fkv8"]
+resource_name = "lambert5SG"
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_texture = ExtResource("3_5xpn0")
+roughness = 0.838
+emission_enabled = true
+emission = Color(0.27451, 0.27451, 0.27451, 1)
+emission_energy_multiplier = 0.3
+emission_texture = SubResource("NoiseTexture2D_abvgu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gm0pn"]
+size = Vector3(12, 50, 6.62708)
+
+[sub_resource type="Curve" id="Curve_5p8fd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.79803, 0.515464), -1.90253, -1.90253, 0, 0, Vector2(1, 0), 0.509055, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fqoli"]
+curve = SubResource("Curve_5p8fd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_km0hl"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_max = 42.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_fqoli")
+
+[sub_resource type="Gradient" id="Gradient_tg0yy"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.66474, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.478431, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_romrk"]
+noise_type = 0
+frequency = 0.0009
+fractal_type = 2
+fractal_gain = 0.52
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kdy48"]
+seamless = true
+color_ramp = SubResource("Gradient_tg0yy")
+noise = SubResource("FastNoiseLite_romrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_643oc"]
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_kdy48")
+
+[sub_resource type="TextMesh" id="TextMesh_txgt1"]
+material = SubResource("StandardMaterial3D_643oc")
+text = "#"
+font_size = 60
+
+[node name="Cobweb01Prefab" type="Node3D"]
+script = ExtResource("1_5dy7m")
+
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -0.0902155, -0.995922, 0, 0.995922, -0.0902155, -295.722, 57.861, -9.53125)
+use_collision = true
+collision_layer = 4
+mesh = ExtResource("1_pwjxo")
+material = SubResource("StandardMaterial3D_5fkv8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 337, 15.8762, 38.3057)
+operation = 2
+size = Vector3(60, 25.825, 100)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.699541, 0.0253332, 0, -0.0253332, 0.699541, 0, 0, 0, 0.7, 1.22598, 18.7775, 1.78762)
+shape = SubResource("BoxShape3D_gm0pn")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3847, 1.71258)
+gi_mode = 0
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-4, -18, -2.81712, 8, 36, 5.63425)
+process_material = SubResource("ParticleProcessMaterial_km0hl")
+draw_pass_1 = SubResource("TextMesh_txgt1")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_uogao")
+volume_db = -5.0
+bus = &"Level Effects"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

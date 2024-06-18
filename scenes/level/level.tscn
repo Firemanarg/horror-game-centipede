@@ -1,0 +1,399 @@
+[gd_scene load_steps=28 format=3 uid="uid://bbbms18yfguhh"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_5tlym"]
+[ext_resource type="Shader" path="res://resources/shaders/blending_texture.gdshader" id="2_oa4l4"]
+[ext_resource type="Texture2D" uid="uid://dh5q377ftxx3g" path="res://resources/images/textures/ground_6_textures/T_Ground6_Color.png" id="3_311m6"]
+[ext_resource type="Texture2D" uid="uid://xki25aof3ioj" path="res://resources/images/textures/ground_6_textures/T_Ground6_Normal.png" id="4_qrbun"]
+[ext_resource type="Texture2D" uid="uid://curso0f3wl7p" path="res://resources/images/textures/ground_6_textures/T_Ground6_AO.png" id="5_bebqg"]
+[ext_resource type="Shader" path="res://resources/shaders/repetition.gdshader" id="6_khpnv"]
+[ext_resource type="PackedScene" uid="uid://bbpui3onpppwb" path="res://prefabs/level/mushroom.tscn" id="7_1rmjl"]
+[ext_resource type="PackedScene" uid="uid://buxgl5cat7h16" path="res://prefabs/level/crystal.tscn" id="8_sotca"]
+[ext_resource type="PackedScene" uid="uid://cdxy0ximahxgi" path="res://prefabs/level/stones/stone_01_prefab.tscn" id="9_jpwgj"]
+[ext_resource type="PackedScene" uid="uid://dcubccpdvw3po" path="res://prefabs/level/stones/stone_02_prefab.tscn" id="10_jkeq7"]
+[ext_resource type="PackedScene" uid="uid://c6bo7fs4uxaia" path="res://prefabs/level/cobwebs/cobweb_01_prefab.tscn" id="11_ccocw"]
+[ext_resource type="PackedScene" uid="uid://b12bnm2sn7fpo" path="res://scenes/player/player.tscn" id="12_asb7k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rske0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_q4mxs"]
+sky_material = SubResource("ProceduralSkyMaterial_rske0")
+
+[sub_resource type="Environment" id="Environment_40pai"]
+background_mode = 2
+sky = SubResource("Sky_q4mxs")
+ambient_light_source = 2
+ambient_light_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.1
+glow_blend_mode = 0
+volumetric_fog_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiwiu"]
+render_priority = 0
+shader = ExtResource("2_oa4l4")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.15, 0.18, 0.16)
+shader_parameter/albedo_tex = ExtResource("3_311m6")
+shader_parameter/orm_tex = ExtResource("5_bebqg")
+shader_parameter/normal_map = ExtResource("4_qrbun")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0dx8"]
+render_priority = 0
+shader = ExtResource("6_khpnv")
+shader_parameter/uv_scale = 10.0
+shader_parameter/albedo = ExtResource("3_311m6")
+shader_parameter/normalmap = ExtResource("4_qrbun")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go17h"]
+render_priority = 0
+shader = ExtResource("6_khpnv")
+shader_parameter/uv_scale = 7.0
+shader_parameter/albedo = ExtResource("3_311m6")
+shader_parameter/normalmap = ExtResource("4_qrbun")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1cqk"]
+render_priority = 0
+shader = ExtResource("6_khpnv")
+shader_parameter/uv_scale = 8.0
+shader_parameter/albedo = ExtResource("3_311m6")
+shader_parameter/normalmap = ExtResource("4_qrbun")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrww3"]
+render_priority = 0
+shader = ExtResource("2_oa4l4")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.135, 0.095, 0.125)
+shader_parameter/albedo_tex = ExtResource("3_311m6")
+shader_parameter/orm_tex = ExtResource("5_bebqg")
+shader_parameter/normal_map = ExtResource("4_qrbun")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e56hl"]
+albedo_texture = ExtResource("3_311m6")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(-0.05, -0.05, -0.05)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.92457
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qashw"]
+render_priority = 0
+shader = ExtResource("2_oa4l4")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.025, -0.06, 0.02)
+shader_parameter/albedo_tex = ExtResource("3_311m6")
+shader_parameter/orm_tex = ExtResource("5_bebqg")
+shader_parameter/normal_map = ExtResource("4_qrbun")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee264"]
+render_priority = 0
+shader = ExtResource("2_oa4l4")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.1, 0.12, 0.12)
+shader_parameter/albedo_tex = ExtResource("3_311m6")
+shader_parameter/orm_tex = ExtResource("5_bebqg")
+shader_parameter/normal_map = ExtResource("4_qrbun")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oynft"]
+render_priority = 0
+shader = ExtResource("2_oa4l4")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.16, 0.09, -0.165)
+shader_parameter/albedo_tex = ExtResource("3_311m6")
+shader_parameter/orm_tex = ExtResource("5_bebqg")
+shader_parameter/normal_map = ExtResource("4_qrbun")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pu3ic"]
+radius = 5.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw57n"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2c5p"]
+albedo_texture = ExtResource("3_311m6")
+normal_enabled = true
+normal_texture = ExtResource("4_qrbun")
+uv1_scale = Vector3(30, 39.7, 30)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.0
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_5tlym")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_40pai")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 33, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 16.0
+height = 143.979
+sides = 16
+material = SubResource("ShaderMaterial_oiwiu")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(0.692017, -0.720231, -0.037491, -2.98023e-08, 0.0675799, -0.766742, 0.721881, 0.690435, 0.03594, -61.4322, 30.8958, -93.9996)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 14.0
+height = 71.3527
+sides = 16
+material = SubResource("ShaderMaterial_m0dx8")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(0.937931, -0.346821, 3.72529e-09, -0.0595571, -0.161064, -0.985145, 0.341669, 0.923999, -0.171723, 80.2925, 41.8966, -59.8529)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 14.0199
+height = 129.401
+sides = 17
+material = SubResource("ShaderMaterial_go17h")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-2.98023e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -2.98023e-08, -1.77636e-15, 71.7859, 33, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 16.1021
+height = 146.0
+sides = 16
+material = SubResource("ShaderMaterial_e1cqk")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D2"]
+transform = Transform3D(0.670899, 0, 0, 0, 1, 0, 0, 0, 1, -0.675365, 33.1847, -127.649)
+flip_faces = true
+inner_radius = 37.123
+outer_radius = 71.3772
+sides = 16
+ring_sides = 12
+material = SubResource("ShaderMaterial_mrww3")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGCombiner3D2"]
+transform = Transform3D(0.573824, 0.0697222, 0.495147, -0.0947284, 0.451546, -0.0605807, -0.334451, -0.00827021, 0.866694, -108.719, 36.5479, -47.3408)
+flip_faces = true
+inner_radius = 17.4179
+outer_radius = 68.0407
+sides = 16
+ring_sides = 12
+material = SubResource("StandardMaterial3D_e56hl")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.37114e-08, -1.2191, -0.245223, 1, -5.32885e-08, -1.0719e-08, 0, -0.308366, 0.969467, 49.673, 27.0322, -87.798)
+flip_faces = true
+radius = 17.643
+radial_segments = 15
+rings = 8
+material = SubResource("ShaderMaterial_qashw")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-0.484733, -1.05577, -0.245223, 0.866025, -0.628747, -7.45058e-09, -0.122611, -0.267053, 0.969467, 72.7986, 37.624, -81.9485)
+flip_faces = true
+radius = 14.9076
+radial_segments = 15
+rings = 8
+material = SubResource("ShaderMaterial_qashw")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.9671, 71.901)
+flip_faces = true
+radius = 16.0
+rings = 16
+material = SubResource("ShaderMaterial_ee264")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.989178, -0.146722, 0, 0.146722, 0.989178, 0, 49.6704, 73.0077)
+flip_faces = true
+radius = 5.0
+height = 13.413
+material = SubResource("ShaderMaterial_oynft")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D2/CSGCylinder3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, -4.47035e-08, 0, 4.47035e-08, 1, 0, 6.92648, 0.0846863)
+mesh = SubResource("SphereMesh_pu3ic")
+surface_material_override/0 = SubResource("StandardMaterial3D_fw57n")
+
+[node name="Scenery" type="Node3D" parent="."]
+
+[node name="Mushroom" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(0.600854, 0.258819, 0.756298, -0.160998, 0.965926, -0.202649, -0.782977, 1.49012e-08, 0.62205, -7.78595, 19.0595, -1.99299)
+
+[node name="Mushroom7" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(-0.982356, -0.153114, 0.107386, -0.179035, 0.935906, -0.303357, -0.0540552, -0.317231, -0.946806, 34.9453, 21.9902, 11.9208)
+
+[node name="Mushroom6" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(-0.19471, -0.125198, -0.344439, -0.0138259, 0.392265, -0.134766, 0.366226, -0.0517547, -0.188214, 7.73265, 19.1644, 26.9676)
+
+[node name="Mushroom2" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(0.891099, -0.19798, -0.408346, 0.24093, 0.968926, 0.0559935, 0.384571, -0.148278, 0.911109, -7.78595, 19.5255, -85.5516)
+
+[node name="Mushroom4" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(-0.910578, 0.159527, 0.381312, 0.151376, 0.987135, -0.0514931, -0.384621, 0.0108325, -0.923012, 40.7458, 16.1405, -99.705)
+
+[node name="Mushroom5" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(0.0581351, -0.0528678, -0.655306, -0.0166069, 0.657535, -0.0545209, 0.657225, 0.0212912, 0.0565877, 58.6733, 13.0275, -94.472)
+
+[node name="Mushroom3" parent="Scenery" instance=ExtResource("7_1rmjl")]
+transform = Transform3D(-0.152255, -0.00162467, 0.683239, 0.168651, 0.678248, 0.0391954, -0.662099, 0.173138, -0.147132, -7.55581, 19.0673, -85.0701)
+
+[node name="Crystal" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.430536, 0.872441, 0.231269, 0.900872, -0.399653, -0.169431, -0.0553909, 0.28129, -0.958023, -14.6174, 39.0052, -27.1493)
+
+[node name="Crystal15" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.175135, -0.264865, 0.503189, 0.406636, -0.309709, -0.304552, 0.397492, 0.433534, 0.0898533, 9.41201, 44.2222, -8.71141)
+
+[node name="Crystal6" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.570461, 0.531189, -0.626429, 0.793681, -0.552739, 0.254067, -0.211293, -0.64212, -0.736911, -30.2236, 43.9892, -77.994)
+
+[node name="Crystal3" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.580294, -0.15381, 1.25368, 0.693536, -1.11427, -0.457727, 1.05564, 0.816608, -0.388439, 0.1746, 46.2612, -84.4036)
+
+[node name="Crystal7" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.622884, 0.917097, 0.838486, 0.646647, -1.04015, 0.657299, 1.06112, 0.0955285, -0.892755, 26.2516, 49.0221, -106.424)
+
+[node name="Crystal11" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.410071, 0.903965, -0.274936, 0.910951, -0.298688, 0.376635, 0.25082, -0.393107, -0.918399, 25.7531, 42.6716, -131.723)
+
+[node name="Crystal12" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.190312, 0.672256, -0.438723, 0.422464, -0.467269, -0.532737, -0.682591, -0.101767, -0.452038, 26.725, 44.0707, -129.202)
+
+[node name="Crystal8" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.173992, -0.0886877, -0.651353, 0.655965, -0.0205029, 0.178016, -0.0428565, -0.67388, 0.0803068, 51.2726, 31.4417, -70.9933)
+
+[node name="Crystal9" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(-0.204351, -0.0658637, -0.457086, 0.461628, -0.0152264, -0.204187, 0.012849, -0.500455, 0.0663685, 47.7402, 30.0644, -70.4865)
+
+[node name="Crystal10" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(-0.364588, 0.125594, -0.768701, 0.718083, -0.274577, -0.385441, -0.301717, -0.805254, 0.0115353, 47.538, 33.8384, -71.4372)
+
+[node name="Crystal5" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(1.69595, -0.578274, 0.703535, 0.0906653, -1.37251, -1.3467, 0.906168, 1.2196, -1.18197, -2.2497, 48.0545, -83.5479)
+
+[node name="Crystal4" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.435619, 0.0206762, 0.899893, 0.274679, -0.955105, -0.111022, 0.857197, 0.295545, -0.421742, 0.901503, 44.4748, -86.7043)
+
+[node name="Crystal2" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.496951, -0.184547, 0.281038, 0.255805, 0.533003, -0.10233, -0.218183, 0.204573, 0.520141, 10.6164, 20.7807, -11.5172)
+
+[node name="Crystal16" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.819969, -0.304502, 0.463713, -0.517249, -0.718754, 0.442657, 0.200511, -0.608909, -0.754403, 54.9812, 46.5656, 8.82559)
+
+[node name="Crystal13" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.155946, 0.121769, -0.160867, -0.190215, 0.156518, -0.0659184, 0.0672618, 0.16031, 0.186552, -6.68707, 28.1421, 17.3814)
+
+[node name="Crystal14" parent="Scenery" instance=ExtResource("8_sotca")]
+transform = Transform3D(0.200614, 0.087572, -0.34075, -0.21217, 0.343013, -0.0367595, 0.280648, 0.196719, 0.215786, -7.95312, 28.4352, 17.469)
+
+[node name="Stone01Prefab" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(23.7223, 14.9662, 53.0402, -2.40701, 57.9715, -15.2811, -55.0587, 3.91391, 23.5206, 38.4966, 12.008, -96.312)
+
+[node name="Stone01Prefab2" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(39.5371, 24.9437, 88.4004, -4.01168, 96.6191, -25.4685, -91.7645, 6.52318, 39.2011, 32.1593, 12.473, -86.6251)
+
+[node name="Stone01Prefab6" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-3.04312, 97.2005, -23.298, -39.6234, -22.5723, -88.9971, -91.7645, 6.52318, 39.2011, -15.8938, 42.4094, -4.44855)
+
+[node name="Stone01Prefab10" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(2.09544, 79.2349, 60.9708, -49.7258, 53.7322, -68.119, -86.735, -28.8909, 40.5261, -12.8183, 20.7508, 67.5628)
+
+[node name="Stone01Prefab11" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-11.1758, -35.0315, 108.939, 5.94339, 89.7739, 43.1499, -124.419, 7.43502, -7.72413, 10.7679, 15.1674, 50.2722)
+
+[node name="Stone01Prefab8" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-40.159, 94.1265, -109.67, -44.0526, -116.381, -83.7551, -137.647, 9.78479, 58.8016, -9.21498, 46.1202, -45.7067)
+
+[node name="Stone01Prefab7" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(2.41871, -99.801, 5.82375, -99.4498, -2.99596, -10.038, 10.1925, -5.54892, -99.3243, 16.1124, 35.0745, -32.2608)
+
+[node name="Stone01Prefab9" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-8.37795, -23.1698, 82.035, -80.7475, -24.2619, -15.0989, 27.3208, -78.8118, -19.4693, 21.425, 37.8277, 15.8316)
+
+[node name="Stone01Prefab3" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-96.6214, -21.9133, 13.5686, -22.8855, 97.1574, -6.05716, -11.8556, -8.95776, -98.8898, 64.8643, 10.6925, -86.833)
+
+[node name="Stone01Prefab4" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(0.555361, -19.3591, 46.0968, 3.29002, 46.0139, 19.2846, -49.8886, 2.81899, 1.78492, 68.3957, 16.4568, -86.6921)
+
+[node name="Stone01Prefab5" parent="Scenery" instance=ExtResource("9_jpwgj")]
+transform = Transform3D(-55.2906, -38.9075, -18.1427, -25.383, 53.4867, -37.348, 34.6216, -22.9211, -56.3558, 61.5692, 14.0897, -79.0753)
+
+[node name="Stone02Prefab" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(-5.13802, 62.7326, -77.706, 36.739, 73.5397, 56.94, 92.8647, -25.6228, -26.8258, -14.0769, 20.3335, 16.5947)
+
+[node name="Stone02Prefab5" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(110.525, -44.729, -13.5445, 46.6, 102.837, 40.6569, -3.54722, -42.7067, 112.087, 9.67629, 20.3335, 83.0135)
+
+[node name="Stone02Prefab6" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(74.4494, -45.5397, 82.3616, -76.215, -90.7839, 18.6968, 55.2138, -63.9096, -85.2467, -10.9921, 50.5134, 77.5808)
+
+[node name="Stone02Prefab4" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(4.31629, -562.592, 1.31066, 195.227, 17.0251, 17.0081, -81.5525, 10.9797, 40.7847, 83.5916, 32.2181, 15.8398)
+
+[node name="CSGMesh3D" parent="Scenery/Stone02Prefab4" index="0"]
+material = SubResource("StandardMaterial3D_d2c5p")
+
+[node name="Stone02Prefab2" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(-30.8683, -52.7734, -79.1335, -91.7927, 38.3293, 10.2449, 24.9248, 75.8012, -60.2738, 14.412, 45.0297, -16.5225)
+
+[node name="Stone02Prefab3" parent="Scenery" instance=ExtResource("10_jkeq7")]
+transform = Transform3D(-8.66556, 80.6349, 87.4711, -61.6708, -120.949, 32.8803, 78.2408, -86.4036, 35.6047, 14.8728, 43.1815, -18.2412)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Scenery"]
+transform = Transform3D(1, 0, 0, 0, 0.0600381, 0.998196, 0, -0.998196, 0.0600381, 0, 55.065, 73.7103)
+light_energy = 3.0
+light_volumetric_fog_energy = 3.0
+spot_range = 39.2684
+spot_angle = 12.0505
+
+[node name="MonsterSpawn" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.40117, 23.1539, 80.665)
+
+[node name="Traps" type="Node3D" parent="."]
+
+[node name="Cobweb01Prefab" parent="Traps" instance=ExtResource("11_ccocw")]
+transform = Transform3D(-0.628174, 0.721498, 0.27361, 0.713497, 0.677456, -0.148323, -0.293843, 0.10256, -0.945073, -7.68303, 19.2715, 19.9403)
+
+[node name="Player" parent="." instance=ExtResource("12_asb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.174898, 23.5157, 24.567)
+
+[editable path="Scenery/Stone02Prefab4"]
