@@ -23,10 +23,6 @@ var context_data: Dictionary = {
 	},
 }
 
-#var current_scene = null
-#var current_context: ContextID = ContextID.MAIN_MENU
-#
-#var _current_context_ready_method: Callable
 var current_context: Dictionary = context_data[ContextID.MAIN_MENU]
 
 
@@ -37,9 +33,6 @@ func _init() -> void:
 func _ready() -> void:
 	current_context["ready_method"].call(get_tree().current_scene)
 	pass
-	#_set_context(ContextID.MAIN_MENU)
-	#var level_menu: CanvasLayer = get_tree().current_scene.level_menu
-	#level_menu.button_pressed.connect(_on_level_menu_button_pressed)
 
 
 func _process(delta: float) -> void:
