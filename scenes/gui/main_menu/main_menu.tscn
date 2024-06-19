@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://furwc111ce3j"]
+
+[ext_resource type="PackedScene" uid="uid://ba8uabmpaq8ap" path="res://scenes/gui/main_menu/main_menu_background_level.tscn" id="1_7gb7c"]
+[ext_resource type="PackedScene" uid="uid://catqou08asb1m" path="res://scenes/gui/main_menu/main_menu_gui.tscn" id="2_oflqk"]
+
+[node name="MainMenu" type="Node"]
+
+[node name="MainMenuBackgroundLevel" parent="." instance=ExtResource("1_7gb7c")]
+
+[node name="MainMenuGUI" parent="." instance=ExtResource("2_oflqk")]
