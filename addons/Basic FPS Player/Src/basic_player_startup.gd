@@ -169,3 +169,4 @@ func reset_head_bob(delta):
 	if $Head.position == head_start_pos:
 		pass
 	$Head.position = lerp($Head.position, head_start_pos, 2 * (1/HEAD_BOB_FREQUENCY) * delta)
+
