@@ -1,0 +1,155 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvhcq2cum17fa"]
+
+[ext_resource type="Script" path="res://scenes/gui/level_menu.gd" id="1_pnayt"]
+[ext_resource type="Shader" path="res://resources/shaders/blur.gdshader" id="1_pxvsd"]
+[ext_resource type="FontFile" uid="uid://dktdsgd5nk8s8" path="res://assets/fonts/Urban Stone.otf" id="3_x6kbf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i15et"]
+shader = ExtResource("1_pxvsd")
+shader_parameter/lod = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o2ql"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngmjt"]
+content_margin_left = 30.0
+content_margin_top = 18.0
+content_margin_right = 30.0
+content_margin_bottom = 7.0
+bg_color = Color(0.470588, 0.470588, 0.470588, 0.470588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kwcu"]
+content_margin_left = 30.0
+content_margin_top = 18.0
+content_margin_right = 30.0
+content_margin_bottom = 7.0
+bg_color = Color(0.470588, 0.470588, 0.470588, 0.705882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giefe"]
+content_margin_left = 30.0
+content_margin_top = 18.0
+content_margin_right = 30.0
+content_margin_bottom = 7.0
+bg_color = Color(0.576471, 0.576471, 0.576471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bestx"]
+
+[node name="LevelMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_pnayt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_i15et")
+layout_mode = 2
+
+[node name="CanvasLayerButtons" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayerButtons"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerButtons/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerButtons/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x6kbf")
+theme_override_font_sizes/font_size = 60
+text = "PAUSE"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_2o2ql")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayerButtons/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonResume" type="Button" parent="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_x6kbf")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngmjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5kwcu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giefe")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bestx")
+text = "RESUME"
+
+[node name="ButtonRestart" type="Button" parent="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_x6kbf")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngmjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5kwcu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giefe")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bestx")
+text = "RESTART"
+
+[node name="ButtonQuit" type="Button" parent="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_x6kbf")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngmjt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5kwcu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giefe")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bestx")
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2/ButtonRestart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="CanvasLayerButtons/CenterContainer/VBoxContainer/VBoxContainer2/ButtonQuit" to="." method="_on_button_quit_pressed"]

@@ -8,6 +8,7 @@ var monster: Node3D = null
 @onready var monster_spawn: Node3D = get_node("MonsterSpawn")
 @onready var traps: Node3D = get_node("Traps")
 @onready var player: CharacterBody3D = get_node("Player")
+@onready var level_menu: CanvasLayer = get_node("LevelMenu")
 
 
 func _ready() -> void:

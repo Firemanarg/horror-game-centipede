@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://ba8uabmpaq8ap"]
+
+[ext_resource type="Shader" path="res://resources/shaders/blending_texture.gdshader" id="1_1gn6g"]
+[ext_resource type="Texture2D" uid="uid://dh5q377ftxx3g" path="res://resources/images/textures/ground_6_textures/T_Ground6_Color.png" id="2_l28x2"]
+[ext_resource type="Texture2D" uid="uid://xki25aof3ioj" path="res://resources/images/textures/ground_6_textures/T_Ground6_Normal.png" id="3_4quit"]
+[ext_resource type="Texture2D" uid="uid://curso0f3wl7p" path="res://resources/images/textures/ground_6_textures/T_Ground6_AO.png" id="4_j83op"]
+[ext_resource type="PackedScene" uid="uid://bbpui3onpppwb" path="res://prefabs/level/mushroom.tscn" id="6_wcpxo"]
+[ext_resource type="PackedScene" uid="uid://buxgl5cat7h16" path="res://prefabs/level/crystal.tscn" id="7_6cef2"]
+[ext_resource type="PackedScene" uid="uid://cdxy0ximahxgi" path="res://prefabs/level/stones/stone_01_prefab.tscn" id="8_2tc22"]
+[ext_resource type="PackedScene" uid="uid://dcubccpdvw3po" path="res://prefabs/level/stones/stone_02_prefab.tscn" id="9_csbqc"]
+[ext_resource type="PackedScene" uid="uid://c6bo7fs4uxaia" path="res://prefabs/level/cobwebs/cobweb_01_prefab.tscn" id="10_nlsyk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kkv5d"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_q4mxs"]
+sky_material = SubResource("ProceduralSkyMaterial_kkv5d")
+
+[sub_resource type="Environment" id="Environment_8n00w"]
+background_mode = 2
+sky = SubResource("Sky_q4mxs")
+ambient_light_source = 2
+ambient_light_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.1
+glow_blend_mode = 0
+volumetric_fog_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcmmr"]
+render_priority = 0
+shader = ExtResource("1_1gn6g")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.15, 0.18, 0.16)
+shader_parameter/albedo_tex = ExtResource("2_l28x2")
+shader_parameter/orm_tex = ExtResource("4_j83op")
+shader_parameter/normal_map = ExtResource("3_4quit")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1rcv"]
+render_priority = 0
+shader = ExtResource("1_1gn6g")
+shader_parameter/roughness = 1.0
+shader_parameter/metalness = 0.0
+shader_parameter/ao_strength = 0.0
+shader_parameter/normal_map_scale = 4.0
+shader_parameter/uv_scale = Vector3(0.135, 0.095, 0.125)
+shader_parameter/albedo_tex = ExtResource("2_l28x2")
+shader_parameter/orm_tex = ExtResource("4_j83op")
+shader_parameter/normal_map = ExtResource("3_4quit")
+shader_parameter/blend_factor = 16.0
+shader_parameter/_tOffset = 0.0
+
+[node name="MainMenuBackgroundLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8n00w")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 33, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 3
+flip_faces = true
+radius = 16.0
+height = 143.979
+sides = 16
+material = SubResource("ShaderMaterial_jcmmr")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D2"]
+transform = Transform3D(0.670899, 0, 0, 0, 1, 0, 0, 0, 1, -0.675365, 33.1847, -127.649)
+flip_faces = true
+inner_radius = 37.123
+outer_radius = 71.3772
+sides = 16
+ring_sides = 12
+material = SubResource("ShaderMaterial_l1rcv")
+
+[node name="Scenery" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
+
+[node name="Mushroom" parent="Scenery" instance=ExtResource("6_wcpxo")]
+transform = Transform3D(0.600854, 0.258819, 0.756298, -0.160998, 0.965926, -0.202649, -0.782977, 1.49012e-08, 0.62205, -7.78595, 19.0595, -1.99299)
+
+[node name="Mushroom6" parent="Scenery" instance=ExtResource("6_wcpxo")]
+transform = Transform3D(-0.19471, -0.125198, -0.344439, -0.0138259, 0.392265, -0.134766, 0.366226, -0.0517547, -0.188214, 7.73265, 19.1644, 26.9676)
+
+[node name="Mushroom2" parent="Scenery" instance=ExtResource("6_wcpxo")]
+transform = Transform3D(0.891099, -0.19798, -0.408346, 0.24093, 0.968926, 0.0559935, 0.384571, -0.148278, 0.911109, -7.78595, 19.5255, -85.5516)
+
+[node name="Mushroom3" parent="Scenery" instance=ExtResource("6_wcpxo")]
+transform = Transform3D(-0.152255, -0.00162467, 0.683239, 0.168651, 0.678248, 0.0391954, -0.662099, 0.173138, -0.147132, -7.55581, 19.0673, -85.0701)
+
+[node name="Crystal" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.430536, 0.872441, 0.231269, 0.900872, -0.399653, -0.169431, -0.0553909, 0.28129, -0.958023, -14.6174, 39.0052, -27.1493)
+
+[node name="Crystal15" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.175135, -0.264865, 0.503189, 0.406636, -0.309709, -0.304552, 0.397492, 0.433534, 0.0898533, 9.41201, 44.2222, -8.71141)
+
+[node name="Crystal6" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(-0.316379, -1.82978, 0.106885, 1.62577, -0.230063, 0.873801, -0.846382, 0.242055, 1.63849, 15.7007, 33.8458, -55.5862)
+
+[node name="Crystal3" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.580294, -0.15381, 1.25368, 0.693536, -1.11427, -0.457727, 1.05564, 0.816608, -0.388439, 0.1746, 46.2612, -84.4036)
+
+[node name="Crystal5" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(1.69595, -0.578274, 0.703535, 0.0906653, -1.37251, -1.3467, 0.906168, 1.2196, -1.18197, -2.2497, 48.0545, -83.5479)
+
+[node name="Crystal4" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.435619, 0.0206762, 0.899893, 0.274679, -0.955105, -0.111022, 0.857197, 0.295545, -0.421742, 0.901503, 44.4748, -86.7043)
+
+[node name="Crystal2" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.496951, -0.184547, 0.281038, 0.255805, 0.533003, -0.10233, -0.218183, 0.204573, 0.520141, 10.6164, 20.7807, -11.5172)
+
+[node name="Crystal13" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.155946, 0.121769, -0.160867, -0.190215, 0.156518, -0.0659184, 0.0672618, 0.16031, 0.186552, -6.68707, 28.1421, 17.3814)
+
+[node name="Crystal14" parent="Scenery" instance=ExtResource("7_6cef2")]
+transform = Transform3D(0.200614, 0.087572, -0.34075, -0.21217, 0.343013, -0.0367595, 0.280648, 0.196719, 0.215786, -7.95312, 28.4352, 17.469)
+
+[node name="Stone01Prefab6" parent="Scenery" instance=ExtResource("8_2tc22")]
+transform = Transform3D(-3.04312, 97.2005, -23.298, -39.6234, -22.5723, -88.9971, -91.7645, 6.52318, 39.2011, -15.8938, 42.4094, -4.44855)
+
+[node name="Stone01Prefab8" parent="Scenery" instance=ExtResource("8_2tc22")]
+transform = Transform3D(-40.159, 94.1265, -109.67, -44.0526, -116.381, -83.7551, -137.647, 9.78479, 58.8016, -9.21498, 46.1202, -45.7067)
+
+[node name="Stone01Prefab7" parent="Scenery" instance=ExtResource("8_2tc22")]
+transform = Transform3D(2.41871, -99.801, 5.82375, -99.4498, -2.99596, -10.038, 10.1925, -5.54892, -99.3243, 16.1124, 35.0745, -32.2608)
+
+[node name="Stone01Prefab9" parent="Scenery" instance=ExtResource("8_2tc22")]
+transform = Transform3D(-8.37795, -23.1698, 82.035, -80.7475, -24.2619, -15.0989, 27.3208, -78.8118, -19.4693, 21.425, 37.8277, 15.8316)
+
+[node name="Stone02Prefab" parent="Scenery" instance=ExtResource("9_csbqc")]
+transform = Transform3D(-5.13802, 62.7326, -77.706, 36.739, 73.5397, 56.94, 92.8647, -25.6228, -26.8258, -14.0769, 20.3335, 16.5947)
+
+[node name="Stone02Prefab2" parent="Scenery" instance=ExtResource("9_csbqc")]
+transform = Transform3D(-30.8683, -52.7734, -79.1335, -91.7927, 38.3293, 10.2449, 24.9248, 75.8012, -60.2738, 14.412, 45.0297, -16.5225)
+
+[node name="Stone02Prefab3" parent="Scenery" instance=ExtResource("9_csbqc")]
+transform = Transform3D(-8.66556, 80.6349, 87.4711, -61.6708, -120.949, 32.8803, 78.2408, -86.4036, 35.6047, 14.8728, 43.1815, -18.2412)
+
+[node name="Traps" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
+
+[node name="Cobweb01Prefab" parent="Traps" instance=ExtResource("10_nlsyk")]
+transform = Transform3D(-0.628174, 0.721498, 0.27361, 0.713497, 0.677456, -0.148323, -0.293843, 0.10256, -0.945073, -7.68303, 19.2715, 19.9403)
+
+[node name="Cobweb01Prefab2" parent="Traps" instance=ExtResource("10_nlsyk")]
+transform = Transform3D(-0.64082, -0.752022, 0.117634, -0.702161, 0.643405, 0.288139, -0.293843, 0.10256, -0.945073, 10.9307, 20.6175, -50.5451)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.955092, 0.0464089, 0.292651, -3.72529e-09, 0.987658, -0.156624, -0.296308, 0.14959, 0.943305, 5.6715, 6.50649, 37.2454)
